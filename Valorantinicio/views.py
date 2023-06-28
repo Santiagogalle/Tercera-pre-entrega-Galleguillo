@@ -4,4 +4,4 @@ from django.http import HttpResponse
 # Create your views here.
 
 def inicio(request):
-    return HttpResponse('<h1>Nuestra primera vista</h1>')
+    return render(request, 'Valorantinicio/Valorantinicio.html')
