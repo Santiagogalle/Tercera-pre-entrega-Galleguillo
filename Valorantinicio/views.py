@@ -5,3 +5,6 @@ from django.http import HttpResponse
 
 def inicio(request):
     return render(request, 'Valorantinicio/Valorantinicio.html')
+
+def crear_Profesionales(request):
+    return render(request, 'Valorantinicio/crear_Profesionales.html')
