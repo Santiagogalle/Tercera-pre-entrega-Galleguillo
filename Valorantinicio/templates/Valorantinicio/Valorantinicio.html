@@ -11,7 +11,10 @@ Profesionales Valorant.
 {% block contenido %}
 
 <form action="" method="post">
-    
+    <table>
+        {% csrf_token %}
+        {{form}}
+    </table>
     <button>Crear</button>
 </form>
 
