@@ -6,10 +6,16 @@ class Profesionales(models.Model):
     nombre = models.CharField(max_length=30)
     edad = models.IntegerField()
     fecha_nacimiento = models.DateField(null=True)
+
+    def _str_(self):
+        return self.nombre
     
 class Jugadoresvalorant(models.Model):
     nombre = models.CharField(max_length=100)
     equipo = models.CharField(max_length=100)
-    rol = models.ChoiceField(choices=[('Duelista', 'Duelista'), ('Controlador', 'Controlador'), ('Iniciador', 'Iniciador'), ('Centinela', 'Centinela')])
+    rol = models.CharField(choices=[('Duelista', 'Duelista'), ('Controlador', 'Controlador'), ('Iniciador', 'Iniciador'), ('Centinela', 'Centinela')], max_length=100)
     nacionalidad = models.CharField(max_length=100)
-    edad = models.IntegerField(min_value=0, max_value=150)
+    edad = models.IntegerField()
+
+    def _str_(self):
+        return self.nombre
