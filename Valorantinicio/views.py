@@ -8,7 +8,7 @@ def inicio(request):
     form = CrearProfesionalesForm()
     return render(request, 'Valorantinicio/Valorantinicio.html', {'form' : form})
 
-def crear_profesionales(request):
+def crear_Profesionales(request):
     form = CrearProfesionalesForm()
     return render(request, 'Valorantinicio/crearProfesionales.html', {'form': form})
 
