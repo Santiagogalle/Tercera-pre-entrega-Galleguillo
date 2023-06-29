@@ -13,7 +13,7 @@ Profesionales Valorant
 <form action="" method="post">
     <table>
         {% csrf_token %}
-        {{form}}
+        {{form.as_div}}
     </table>
     <button>Crear</button>
 </form>
