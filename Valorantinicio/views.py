@@ -2,6 +2,7 @@ from django.shortcuts import render
 from .forms import CrearProfesionalesForm, JugadoresvalorantForm
 from Valorantinicio.models import Profesionales
 from Valorantinicio.models import jugadoresvalorant
+from Valorantinicio.forms import BuscarJugadorForm
 
 # Create your views here.
 
@@ -44,3 +45,17 @@ def Jugadores_valorant(request):
 
     form = JugadoresvalorantForm()
     return render(request, 'Valorantinicio/Jugadoresvalorant.html', {'form': form, 'mensaje': segmensaje})
+
+def buscar_jugador_view(request):
+
+    form = BuscarJugadorForm(request.GET)
+    if form.is_valid():
+        nombre_jugador = form.cleaned_data['nombre_jugador']
+        # Realizar la búsqueda en la base de datos y obtener los resultados
+        resultados = jugadoresvalorant.objects.filter(nombre__icontains=nombre_jugador)
+        # Pasar los resultados al contexto para mostrarlos en la plantilla
+    else:
+        resultados = None
+
+    context = {'form': form, 'resultados': resultados}
+    return render(request, 'buscar_jugador.html', context)

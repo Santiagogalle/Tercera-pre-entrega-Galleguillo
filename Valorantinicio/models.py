@@ -19,3 +19,4 @@ class jugadoresvalorant(models.Model):
 
     def _str_(self):
         return self.nombre
+    
