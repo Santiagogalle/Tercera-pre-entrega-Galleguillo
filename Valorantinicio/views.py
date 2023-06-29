@@ -20,6 +20,6 @@ def crear_profesionales(request):
 from django.shortcuts import render
 from .forms import JugadoresvalorantForm
 
-def Jugadoresvalorant(request):
+def crear_profesionales(request):
     form = JugadoresvalorantForm()
     return render(request, 'Valorantinicio/Jugadoresvalorant.html', {'form': form})
