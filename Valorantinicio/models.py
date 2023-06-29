@@ -10,7 +10,7 @@ class Profesionales(models.Model):
     def _str_(self):
         return self.nombre
     
-class Jugadoresvalorant(models.Model):
+class jugadoresvalorant(models.Model):
     nombre = models.CharField(max_length=100)
     equipo = models.CharField(max_length=100)
     rol = models.CharField(choices=[('Duelista', 'Duelista'), ('Controlador', 'Controlador'), ('Iniciador', 'Iniciador'), ('Centinela', 'Centinela')], max_length=100)
