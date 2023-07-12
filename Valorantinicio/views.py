@@ -47,7 +47,8 @@ def Jugadores_valorant(request):
     return render(request, 'Valorantinicio/Jugadoresvalorant.html', {'form': form, 'mensaje': segmensaje})
 
 def buscar_jugador_view(request):
-
+    if request.method == 'POST':
+       form = BuscarJugadorForm(request.POST)
     form = BuscarJugadorForm(request.GET)
     if form.is_valid():
         nombre_jugador = form.cleaned_data['nombre_jugador']

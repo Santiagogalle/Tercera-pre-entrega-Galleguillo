@@ -12,7 +12,7 @@ Jugadores Valorant
 
 <p>{{segmensaje}}</p>
 
-<form action="" method="post">
+<form action="{% url 'Valorantinicio:Jugadoresvalorant' %}" method="post">
     <table>
         {% csrf_token %}
         {{form.as_div}}
