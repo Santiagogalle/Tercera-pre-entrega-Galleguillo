@@ -12,7 +12,7 @@ Profesionales Valorant
 
 <p>{{mensaje}}</p>
 
-<form action="" method="post">
+<form action="{% url 'Crear_Profesionales' %}" method="post">
     <table>
         {% csrf_token %}
         {{form.as_div}}
