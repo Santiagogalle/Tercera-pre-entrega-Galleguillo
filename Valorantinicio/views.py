@@ -30,21 +30,25 @@ def crear_Profesionales(request):
 
 def Jugadores_valorant(request):
     segmensaje = ''
+    form = JugadoresvalorantForm()
 
     if request.method == 'POST':
-       form = JugadoresvalorantForm()
-       if form.is_valid():
-          info = form.cleaned_data
-          Jugadoresvalorant = jugadoresvalorant(nombre=info['nombre'],equipo=info['equipo'],rol=info['rol'],nacionalidad=info['nacionalidad'],edad=info['edad'])
-          Jugadoresvalorant.save()
-          segmensaje = f'se creo el jugador {Jugadoresvalorant.nombre}'
+        form = JugadoresvalorantForm(request.POST)
+        if form.is_valid():
+            info = form.cleaned_data
+            jugador = jugadoresvalorant(
+                nombre=info['nombre'],
+                equipo=info['equipo'],
+                rol=info['rol'],
+                nacionalidad=info['nacionalidad'],
+                edad=info['edad']
+            )
+            jugador.save()
+            segmensaje = f'Se creó el jugador {jugador.nombre}'
+        else:
+            return render(request, 'Valorantinicio/Jugadoresvalorant.html', {'form': form})
 
-       else:
-          return render(request, 'Valorantinicio/Jugadoresvalorant.html', {'form': form})
-
-
-    form = JugadoresvalorantForm()
-    return render(request, 'Valorantinicio/Jugadoresvalorant.html', {'form': form, 'mensaje': segmensaje})
+    return render(request, 'Valorantinicio/Jugadoresvalorant.html', {'form': form, 'segmensaje': segmensaje})
 
 def buscar_jugador_view(request):
     if request.method == 'POST':
