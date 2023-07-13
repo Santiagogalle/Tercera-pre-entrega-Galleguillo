@@ -1,9 +1,15 @@
 from django import forms
 from Valorantinicio.models import jugadoresvalorant
-class CrearProfesionalesForm(forms.Form):
-    nombre = forms.CharField(max_length=30)
-    edad = forms.IntegerField()
-    fecha_nacimiento = forms.DateField(required=False)
+class CrearProfesionalesBase(forms.Form):
+     nombre = forms.CharField(max_length=30)
+     edad = forms.IntegerField()
+     fecha_nacimiento = forms.DateField(required=False)
+
+class CrearProfesionalesForm(CrearProfesionalesBase):
+    ...
+
+class ModificarProfesionalesForm(CrearProfesionalesBase):
+    ...
 
 
 class JugadoresvalorantForm(forms.Form):

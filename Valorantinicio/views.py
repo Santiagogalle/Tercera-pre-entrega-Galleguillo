@@ -3,6 +3,7 @@ from .forms import CrearProfesionalesForm, JugadoresvalorantForm
 from Valorantinicio.models import Profesionales
 from Valorantinicio.models import jugadoresvalorant
 from Valorantinicio.forms import BuscarJugadorForm
+from Valorantinicio.forms import ModificarProfesionalesForm
 from django.shortcuts import redirect
 
 # Create your views here.
@@ -68,7 +69,25 @@ def buscar_jugador_view(request):
 
 def Eliminar_Profesionales(request, Profesionales_id):
  
-    profesionales = Profesionales.objects.get(id=Profesionales_id)
-    print(profesionales)
+   profesionales = Profesionales.objects.get(id=Profesionales_id)
+   profesionales.delete()
 
-    return redirect('Valorantinicio: Crear_Profesionales')
+   return redirect('Valorantinicio: Crear_Profesionales')
+
+def Modificar_Profesionales(request, Profesionales_id):
+     profesionales_a_modificar = Profesionales.objects.get(id=Profesionales_id)
+
+     if request.method == 'POST':
+         form = ModificarProfesionalesForm(request.POST)
+         if form.is_valid():
+             info = form.cleaned_data
+             profesionales_a_modificar.nombre = inicio['nombre']
+             profesionales_a_modificar.edad = inicio['edad']
+             profesionales_a_modificar.save()
+             return redirect('Valorantinicio: Crear_Profesionales')
+
+         else:
+             return render(request, 'Valorantinicio/Modificar_Profesionales.html', {'form':form})
+    
+     form = ModificarProfesionalesForm(initial={'nombre': profesionales_a_modificar.nombre,'edad': profesionales_a_modificar.edad})
+     return render(request, 'Valorantinicio/Modificar_Profesionales.html', {'form':form})
