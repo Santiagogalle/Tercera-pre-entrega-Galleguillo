@@ -1,0 +1,22 @@
+{% extends 'base.html' %}
+
+{% block title_head %}
+<title>Modificar_Profesionales</title>
+{% endblock title_head %}
+
+{% block h1_header %}
+Modificar_Profesionales
+{% endblock h1_header %}
+
+{% block contenido %}
+
+<p>{{mensaje}}</p>
+
+<form action="{% url 'Valorantinicio:Crear_Profesionales' %}" method="post">
+    <table>
+        {% csrf_token %}
+        {{form.as_div}}
+    </table>
+    <button>Modificar</button>
+</form>
+{% endblock contenido %}

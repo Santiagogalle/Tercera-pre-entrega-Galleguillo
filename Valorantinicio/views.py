@@ -3,6 +3,8 @@ from .forms import CrearProfesionalesForm, JugadoresvalorantForm
 from Valorantinicio.models import Profesionales
 from Valorantinicio.models import jugadoresvalorant
 from Valorantinicio.forms import BuscarJugadorForm
+from Valorantinicio.forms import ModificarProfesionalesForm
+from django.shortcuts import redirect
 
 # Create your views here.
 
@@ -30,21 +32,25 @@ def crear_Profesionales(request):
 
 def Jugadores_valorant(request):
     segmensaje = ''
+    form = JugadoresvalorantForm()
 
     if request.method == 'POST':
-       form = JugadoresvalorantForm()
-       if form.is_valid():
-          info = form.cleaned_data
-          Jugadoresvalorant = jugadoresvalorant(nombre=info['nombre'],equipo=info['equipo'],rol=info['rol'],nacionalidad=info['nacionalidad'],edad=info['edad'])
-          Jugadoresvalorant.save()
-          segmensaje = f'se creo el jugador {Jugadoresvalorant.nombre}'
+        form = JugadoresvalorantForm(request.POST)
+        if form.is_valid():
+            info = form.cleaned_data
+            jugador = jugadoresvalorant(
+                nombre=info['nombre'],
+                equipo=info['equipo'],
+                rol=info['rol'],
+                nacionalidad=info['nacionalidad'],
+                edad=info['edad']
+            )
+            jugador.save()
+            segmensaje = f'Se creó el jugador {jugador.nombre}'
+        else:
+            return render(request, 'Valorantinicio/Jugadoresvalorant.html', {'form': form})
 
-       else:
-          return render(request, 'Valorantinicio/Jugadoresvalorant.html', {'form': form})
-
-
-    form = JugadoresvalorantForm()
-    return render(request, 'Valorantinicio/Jugadoresvalorant.html', {'form': form, 'mensaje': segmensaje})
+    return render(request, 'Valorantinicio/Jugadoresvalorant.html', {'form': form, 'segmensaje': segmensaje})
 
 def buscar_jugador_view(request):
     if request.method == 'POST':
@@ -60,3 +66,28 @@ def buscar_jugador_view(request):
 
     context = {'form': form, 'resultados': resultados}
     return render(request, 'buscar_jugador.html', context)
+
+def Eliminar_Profesionales(request, Profesionales_id):
+ 
+   profesionales = Profesionales.objects.get(id=Profesionales_id)
+   profesionales.delete()
+
+   return redirect('Valorantinicio: Crear_Profesionales')
+
+def Modificar_Profesionales(request, Profesionales_id):
+     profesionales_a_modificar = Profesionales.objects.get(id=Profesionales_id)
+
+     if request.method == 'POST':
+         form = ModificarProfesionalesForm(request.POST)
+         if form.is_valid():
+             info = form.cleaned_data
+             profesionales_a_modificar.nombre = inicio['nombre']
+             profesionales_a_modificar.edad = inicio['edad']
+             profesionales_a_modificar.save()
+             return redirect('Valorantinicio: Crear_Profesionales')
+
+         else:
+             return render(request, 'Valorantinicio/Modificar_Profesionales.html', {'form':form})
+    
+     form = ModificarProfesionalesForm(initial={'nombre': profesionales_a_modificar.nombre,'edad': profesionales_a_modificar.edad})
+     return render(request, 'Valorantinicio/Modificar_Profesionales.html', {'form':form})

@@ -24,4 +24,4 @@ class buscar_jugador(models.Model):
     nombre= models.CharField(max_length=20)
 
     def _str_(self):
-        return self.nombre
+        return f"nombre: {self.nombre}"
