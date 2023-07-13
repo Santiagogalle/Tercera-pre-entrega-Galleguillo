@@ -21,10 +21,10 @@ Profesionales Valorant
 </form>
 
 {% if Profesionales %}
-{% if Profesionales in Profesionales %}
+{% for Profesionales in Profesionales %}
 <li>
     {{Profesionales}}
-    <a href={% url 'Eliminar_Profesionales' %}>Eliminar<a/>
+    <a href={% url 'Valorantinicio:Eliminar_Profesionales' %}>Eliminar<a/>
 </li>
 {% endfor %}
 {% else %}
