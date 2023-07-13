@@ -20,4 +20,15 @@ Profesionales Valorant
     <button>Crear</button>
 </form>
 
+{% if Profesionales %}
+{% if Profesionales in Profesionales %}
+<li>
+    {{Profesionales}}
+    <a href={% url 'Eliminar_Profesionales' %}>Eliminar<a/>
+</li>
+{% endfor %}
+{% else %}
+<p> No se encontraron datos cargados.</p>
+{% endif %}%}
+
 {% endblock contenido %}

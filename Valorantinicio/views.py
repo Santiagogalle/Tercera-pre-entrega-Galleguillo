@@ -3,6 +3,7 @@ from .forms import CrearProfesionalesForm, JugadoresvalorantForm
 from Valorantinicio.models import Profesionales
 from Valorantinicio.models import jugadoresvalorant
 from Valorantinicio.forms import BuscarJugadorForm
+from django.shortcuts import redirect
 
 # Create your views here.
 
@@ -64,3 +65,6 @@ def buscar_jugador_view(request):
 
     context = {'form': form, 'resultados': resultados}
     return render(request, 'buscar_jugador.html', context)
+
+def Eliminar_Profesionales(request):
+ return redirect('Valorantinicio: Crear_Profesionales')
