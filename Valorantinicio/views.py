@@ -66,5 +66,9 @@ def buscar_jugador_view(request):
     context = {'form': form, 'resultados': resultados}
     return render(request, 'buscar_jugador.html', context)
 
-def Eliminar_Profesionales(request):
- return redirect('Valorantinicio: Crear_Profesionales')
+def Eliminar_Profesionales(request, Profesionales_id):
+ 
+    profesionales = Profesionales.objects.get(id=Profesionales_id)
+    print(profesionales)
+
+    return redirect('Valorantinicio: Crear_Profesionales')

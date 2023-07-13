@@ -24,7 +24,7 @@ Profesionales Valorant
 {% for Profesionales in Profesionales %}
 <li>
     {{Profesionales}}
-    <a href={% url 'Valorantinicio:Eliminar_Profesionales' %}>Eliminar<a/>
+    <a href={% url 'Valorantinicio:Eliminar_Profesionales' Profesionales.id %}>Eliminar<a/>
 </li>
 {% endfor %}
 {% else %}
