@@ -1,0 +1,36 @@
+{% comment %} {% extends 'base.html' %}
+
+{% block title_head %}
+<title>Profesionales</title>
+{% endblock title_head %}
+
+{% block h1_header %}
+Listado de Profesionales
+{% endblock h1_header %}
+
+{% block contenido %}
+<button>
+    <a class='navbar-brand' href={% url 'Valorantinicio:Crear_Profesionales' %}>Crear Profesionales<a/>
+</button>
+<form action="{% url 'Valorantinicio:Crear_Profesionales' %}" method="post">
+    <table>
+        {% csrf_token %}
+        {{form.as_div}}
+    </table>
+    <button>Buscar</button>
+</form>
+
+{% if Profesionales %}
+{% for Profesionales in Profesionales %}
+<li>
+    {{Profesionales}}
+    <a href={% url 'Valorantinicio:Eliminar_Profesionales' Profesionales.id %}>Eliminar<a/>
+    <a href={% url 'Valorantinicio:Modificar_Profesionales' Profesionales.id %}>Modificar<a/>
+</li>
+{% endfor %}
+{% else %}
+<p> No se encontraron datos cargados.</p>
+{% endif %}
+
+{% endblock contenido %} {% endcomment %}
+

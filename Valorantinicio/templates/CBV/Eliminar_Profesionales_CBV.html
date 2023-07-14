@@ -1,0 +1,21 @@
+{% comment %} {% extends 'base.html' %}
+
+{% block title_head %}
+<title>Eliminar Profesionales</title>
+{% endblock title_head %}
+
+{% block h1_header %}
+Eliminar Profesionales
+{% endblock h1_header %}
+
+{% block contenido %}
+
+<p>{{mensaje}}</p>
+
+<form action={% url 'Valorantinicio:Eliminar_Profesionales' %} method="post">
+    <table>
+        <p> Confirmar el borrado del {{Profesional}}</p>
+        {% csrf_token %}
+    <button>Confirmar</button>
+</form>
+{% endblock contenido %} {% endcomment %}

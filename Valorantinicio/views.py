@@ -6,7 +6,9 @@ from Valorantinicio.models import jugadoresvalorant
 from Valorantinicio.forms import BuscarJugadorForm
 from Valorantinicio.forms import ModificarProfesionalesForm
 from django.shortcuts import redirect
-# from django.views.generic.edit import CreateView
+# importaciones de CBV
+# from django.views.generic.edit import CreateView, UpdateView, DeleteView
+# from django.views.generic.list import ListView
 # from django.urls import reverse_lazy
 
 # Create your views here.
@@ -100,3 +102,19 @@ def Modificar_Profesionales(request, Profesionales_id):
 #     template_name = 'Valorantinicio/CBV/Crear_Profesionales_CBV.html'
 #     fields = ['nombre', 'edad']
 #     success_url = reverse_lazy('Valorantinicio:Crear_Profesionales_CBV')
+
+# class ListarProfesionales(Listview):
+#     model = Profesionales
+#     template_name = 'Valorantinicio/CBV/Listar_Profesionales_CBV.html'
+#     context_object_name = 'Profesionales'
+
+# class ModificarProfesionales(UpdateView):
+#     model = Profesionales
+#     template_name = 'Valorantinicio/CBV/Modificar_Profesionales_CBV.html'
+#     fields = ['nombre', 'edad']
+#     succes_url = reverse_lazy('Valorantinicio:Listar_Profesionales')
+
+# class EliminarProfesionales(DeleteView):
+#     model = Profesionales
+#     template_name = 'Valorantinicio/CBV/Eliminar_Profesionales_CBV.html'
+#     succes_url = reverse_lazy('Valorantinicio:Listar_Profesionales')
