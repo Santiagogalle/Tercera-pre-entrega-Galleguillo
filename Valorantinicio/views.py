@@ -22,7 +22,7 @@ def crear_Profesionales(request):
      if request.method == 'POST':
        form = CrearProfesionalesForm(request.POST)
        if form.is_valid():
-        nfo = form.cleaned_data
+        info = form.cleaned_data
         profesionales = Profesionales(nombre=info['nombre'],edad=info['edad'],fecha_nacimiento=info['fecha_nacimiento'])
         profesionales.save()
         mensaje = f'se creo el profesional {profesionales.nombre}'
