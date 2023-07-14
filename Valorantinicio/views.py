@@ -6,7 +6,10 @@ from Valorantinicio.models import jugadoresvalorant
 from Valorantinicio.forms import BuscarJugadorForm
 from Valorantinicio.forms import ModificarProfesionalesForm
 from django.shortcuts import redirect
-# from django.views.generic.edit import CreateView
+# importaciones de CBV
+# from django.views.generic.edit import CreateView, UpdateView, DeleteView
+# from django.views.generic.list import ListView
+# from django.views.generic.detail import DetailView
 # from django.urls import reverse_lazy
 
 # Create your views here.
@@ -22,7 +25,7 @@ def crear_Profesionales(request):
      if request.method == 'POST':
        form = CrearProfesionalesForm(request.POST)
        if form.is_valid():
-        nfo = form.cleaned_data
+        info = form.cleaned_data
         profesionales = Profesionales(nombre=info['nombre'],edad=info['edad'],fecha_nacimiento=info['fecha_nacimiento'])
         profesionales.save()
         mensaje = f'se creo el profesional {profesionales.nombre}'
@@ -70,33 +73,56 @@ def buscar_jugador_view(request):
     context = {'form': form, 'resultados': resultados}
     return render(request, 'buscar_jugador.html', context)
 
-def Eliminar_Profesionales(request, Profesionales_id):
+# CRUD Y CBV (COMENTADAS POR QUE GENERABAN ERRORES DEBIDO A QUE AVANZE MUCHO EN EL TRABAJO Y AL NUNCA HABER HECHO LA LISTA PRINCIPAL NO PUDE COLOCAR CADA VIEW, URL, ETC, EN SU LUGAR POR ENDE Y DEBIDO A LA FALTA DE TIEMPO NO LO PUDE CORREGIR Y TUVE QUE DEJAR TODO LO RELACIONADO AL CRUD Y CBV COMO COMENTADO)
+
+
+# def Eliminar_Profesionales(request, Profesionales_id):
  
-   profesionales = Profesionales.objects.get(id=Profesionales_id)
-   profesionales.delete()
+#    profesionales = Profesionales.objects.get(id=Profesionales_id)
+#    profesionales.delete()
 
-   return redirect('Valorantinicio: Crear_Profesionales')
+#    return redirect('Valorantinicio: Crear_Profesionales')
 
-def Modificar_Profesionales(request, Profesionales_id):
-     profesionales_a_modificar = Profesionales.objects.get(id=Profesionales_id)
+# def Modificar_Profesionales(request, Profesionales_id):
+#      profesionales_a_modificar = Profesionales.objects.get(id=Profesionales_id)
 
-     if request.method == 'POST':
-         form = ModificarProfesionalesForm(request.POST)
-         if form.is_valid():
-             info = form.cleaned_data
-             profesionales_a_modificar.nombre = inicio['nombre']
-             profesionales_a_modificar.edad = inicio['edad']
-             profesionales_a_modificar.save()
-             return redirect('Valorantinicio: Crear_Profesionales')
+#      if request.method == 'POST':
+#          form = ModificarProfesionalesForm(request.POST)
+#          if form.is_valid():
+#              info = form.cleaned_data
+#              profesionales_a_modificar.nombre = inicio['nombre']
+#              profesionales_a_modificar.edad = inicio['edad']
+#              profesionales_a_modificar.save()
+#              return redirect('Valorantinicio: Crear_Profesionales')
 
-         else:
-             return render(request, 'Valorantinicio/Modificar_Profesionales.html', {'form':form})
+#          else:
+#              return render(request, 'Valorantinicio/Modificar_Profesionales.html', {'form':form})
     
-     form = ModificarProfesionalesForm(initial={'nombre': profesionales_a_modificar.nombre,'edad': profesionales_a_modificar.edad})
-     return render(request, 'Valorantinicio/Modificar_Profesionales.html', {'form':form})
+#      form = ModificarProfesionalesForm(initial={'nombre': profesionales_a_modificar.nombre,'edad': profesionales_a_modificar.edad})
+#      return render(request, 'Valorantinicio/Modificar_Profesionales.html', {'form':form})
 
 # class CrearProfesionales(CreateView):
 #     model = Profesionales
 #     template_name = 'Valorantinicio/CBV/Crear_Profesionales_CBV.html'
-#     fields = ['nombre', 'edad']
+#     fields = ['nombre', 'edad', 'descripcion']
 #     success_url = reverse_lazy('Valorantinicio:Crear_Profesionales_CBV')
+
+# class ListarProfesionales(Listview):
+#     model = Profesionales
+#     template_name = 'Valorantinicio/CBV/Listar_Profesionales_CBV.html'
+#     context_object_name = 'Profesionales'
+
+# class ModificarProfesionales(UpdateView):
+#     model = Profesionales
+#     template_name = 'Valorantinicio/CBV/Modificar_Profesionales_CBV.html'
+#     fields = ['nombre', 'edad', 'descripcion']
+#     succes_url = reverse_lazy('Valorantinicio:Listar_Profesionales')
+
+# class EliminarProfesionales(DeleteView):
+#     model = Profesionales
+#     template_name = 'Valorantinicio/CBV/Eliminar_Profesionales_CBV.html'
+#     succes_url = reverse_lazy('Valorantinicio:Listar_Profesionales')
+
+# class MostrarProfesionales(DetailView):
+#     model = Profesionales
+#     template_name = "Valorantinicio/CBV/Mostrar_Profesionales_CBV.html"

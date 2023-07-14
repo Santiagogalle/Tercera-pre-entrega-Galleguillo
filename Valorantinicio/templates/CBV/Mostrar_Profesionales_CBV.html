@@ -1,0 +1,14 @@
+{% comment %} {% extends 'base.html' %}
+
+{% block title_head %}
+<title>Profesionales</title>
+{% endblock title_head %}
+
+{% block h1_header %}
+{{profesionales.name}}
+{% endblock h1_header %}
+
+{% block contenido %}
+<li>Edad: {{profesional.edad}}</li>
+<li>Descripcion: {{profesional.descripcion}}</li>
+{% endblock contenido %} {% endcomment %}
