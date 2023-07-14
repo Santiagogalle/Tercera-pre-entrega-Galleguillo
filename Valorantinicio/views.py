@@ -5,6 +5,8 @@ from Valorantinicio.models import jugadoresvalorant
 from Valorantinicio.forms import BuscarJugadorForm
 from Valorantinicio.forms import ModificarProfesionalesForm
 from django.shortcuts import redirect
+from django.views.generic.edit import CreateView
+from django.urls import reverse_lazy
 
 # Create your views here.
 
@@ -13,19 +15,19 @@ def inicio(request):
     form = CrearProfesionalesForm()
     return render(request, 'Valorantinicio/Valorantinicio.html', {'form' : form})
 
-def crear_Profesionales(request):
-    mensaje = ''
+# def crear_Profesionales(request):
+#     mensaje = ''
 
-    if request.method == 'POST':
-      form = CrearProfesionalesForm(request.POST)
-      if form.is_valid():
-         info = form.cleaned_data
-         profesionales = Profesionales(nombre=info['nombre'],edad=info['edad'],fecha_nacimiento=info['fecha_nacimiento'])
-         profesionales.save()
-         mensaje = f'se creo el profesional {profesionales.nombre}'
+#     if request.method == 'POST':
+#       form = CrearProfesionalesForm(request.POST)
+#       if form.is_valid():
+#          info = form.cleaned_data
+#          profesionales = Profesionales(nombre=info['nombre'],edad=info['edad'],fecha_nacimiento=info['fecha_nacimiento'])
+#          profesionales.save()
+#          mensaje = f'se creo el profesional {profesionales.nombre}'
       
-      else:
-       return render(request, 'Valorantinicio/crear_Profesionales.html', {'form': form})
+#       else:
+#        return render(request, 'Valorantinicio/crear_Profesionales.html', {'form': form})
 
     form = CrearProfesionalesForm()
     return render(request, 'Valorantinicio/crear_Profesionales.html', {'form': form, 'mensaje': mensaje})
@@ -91,3 +93,9 @@ def Modificar_Profesionales(request, Profesionales_id):
     
      form = ModificarProfesionalesForm(initial={'nombre': profesionales_a_modificar.nombre,'edad': profesionales_a_modificar.edad})
      return render(request, 'Valorantinicio/Modificar_Profesionales.html', {'form':form})
+
+class CrearProfesionales(CreateView):
+    model = Profesionales
+    template_name = 'Valorantinicio/CBV/Crear_Profesionales_CBV.html'
+    fields = ['nombre', 'edad']
+    success_url = reverse_lazy('Valorantinicio:crear_Profesionales')
