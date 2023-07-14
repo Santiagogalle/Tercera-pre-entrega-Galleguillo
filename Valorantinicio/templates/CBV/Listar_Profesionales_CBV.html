@@ -24,6 +24,7 @@ Listado de Profesionales
 {% for Profesionales in Profesionales %}
 <li>
     {{Profesionales}}
+    <a href={% url 'Valorantinicio:Mostrar_Profesionales' Profesionales.id %}>Ver mas<a/>
     <a href={% url 'Valorantinicio:Eliminar_Profesionales' Profesionales.id %}>Eliminar<a/>
     <a href={% url 'Valorantinicio:Modificar_Profesionales' Profesionales.id %}>Modificar<a/>
 </li>

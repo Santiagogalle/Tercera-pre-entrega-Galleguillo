@@ -9,6 +9,7 @@ from django.shortcuts import redirect
 # importaciones de CBV
 # from django.views.generic.edit import CreateView, UpdateView, DeleteView
 # from django.views.generic.list import ListView
+# from django.views.generic.detail import DetailView
 # from django.urls import reverse_lazy
 
 # Create your views here.
@@ -103,7 +104,7 @@ def buscar_jugador_view(request):
 # class CrearProfesionales(CreateView):
 #     model = Profesionales
 #     template_name = 'Valorantinicio/CBV/Crear_Profesionales_CBV.html'
-#     fields = ['nombre', 'edad']
+#     fields = ['nombre', 'edad', 'descripcion']
 #     success_url = reverse_lazy('Valorantinicio:Crear_Profesionales_CBV')
 
 # class ListarProfesionales(Listview):
@@ -114,10 +115,14 @@ def buscar_jugador_view(request):
 # class ModificarProfesionales(UpdateView):
 #     model = Profesionales
 #     template_name = 'Valorantinicio/CBV/Modificar_Profesionales_CBV.html'
-#     fields = ['nombre', 'edad']
+#     fields = ['nombre', 'edad', 'descripcion']
 #     succes_url = reverse_lazy('Valorantinicio:Listar_Profesionales')
 
 # class EliminarProfesionales(DeleteView):
 #     model = Profesionales
 #     template_name = 'Valorantinicio/CBV/Eliminar_Profesionales_CBV.html'
 #     succes_url = reverse_lazy('Valorantinicio:Listar_Profesionales')
+
+# class MostrarProfesionales(DetailView):
+#     model = Profesionales
+#     template_name = "Valorantinicio/CBV/Mostrar_Profesionales_CBV.html"

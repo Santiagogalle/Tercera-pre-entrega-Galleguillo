@@ -15,6 +15,6 @@ urlpatterns = [
     #  path('Profesionales/Eliminar/<int:pk>/', views.Eliminar_Profesionales.as_view(), name='Eliminar_Profesionales'),
     #  path('Profesionales/Modificar/<int:pk>/', views.Modificar_Profesionales.as_view(), name='Modificar_Profesionales'),
     #  path('Profesionales/', views.ListarProfesionales.as_view(), name='Listar_Profesionales')
-
+    #  path('Profesionales/<int:pk>/', views.Mostrar_Profesionales.as_view(), name='Mostrar_Profesionales'),
 ]
 
