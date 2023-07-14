@@ -12,7 +12,7 @@ Modificar_Profesionales
 
 <p>{{mensaje}}</p>
 
-<form action="{% url 'Valorantinicio:Modificar_Profesionales' %}" method="post">
+<form action="{% url 'Valorantinicio:Modificar_Profesionales' Profesionales.id %}" method="post">
     <table>
         {% csrf_token %}
         {{form.as_div}}

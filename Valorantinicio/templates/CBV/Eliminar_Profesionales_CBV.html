@@ -12,7 +12,7 @@ Eliminar Profesionales
 
 <p>{{mensaje}}</p>
 
-<form action={% url 'Valorantinicio:Eliminar_Profesionales' %} method="post">
+<form action={% url 'Valorantinicio:Eliminar_Profesionales' Profesionales.id %} method="post">
     <table>
         <p> Confirmar el borrado del {{Profesional}}</p>
         {% csrf_token %}

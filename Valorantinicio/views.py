@@ -72,30 +72,33 @@ def buscar_jugador_view(request):
     context = {'form': form, 'resultados': resultados}
     return render(request, 'buscar_jugador.html', context)
 
-def Eliminar_Profesionales(request, Profesionales_id):
+# CRUD Y CBV (COMENTADAS POR QUE GENERABAN ERRORES DEBIDO A QUE AVANZE MUCHO EN EL TRABAJO Y AL NUNCA HABER HECHO LA LISTA PRINCIPAL NO PUDE COLOCAR CADA VIEW, URL, ETC, EN SU LUGAR POR ENDE Y DEBIDO A LA FALTA DE TIEMPO NO LO PUDE CORREGIR Y TUVE QUE DEJAR TODO LO RELACIONADO AL CRUD Y CBV COMO COMENTADO)
+
+
+# def Eliminar_Profesionales(request, Profesionales_id):
  
-   profesionales = Profesionales.objects.get(id=Profesionales_id)
-   profesionales.delete()
+#    profesionales = Profesionales.objects.get(id=Profesionales_id)
+#    profesionales.delete()
 
-   return redirect('Valorantinicio: Crear_Profesionales')
+#    return redirect('Valorantinicio: Crear_Profesionales')
 
-def Modificar_Profesionales(request, Profesionales_id):
-     profesionales_a_modificar = Profesionales.objects.get(id=Profesionales_id)
+# def Modificar_Profesionales(request, Profesionales_id):
+#      profesionales_a_modificar = Profesionales.objects.get(id=Profesionales_id)
 
-     if request.method == 'POST':
-         form = ModificarProfesionalesForm(request.POST)
-         if form.is_valid():
-             info = form.cleaned_data
-             profesionales_a_modificar.nombre = inicio['nombre']
-             profesionales_a_modificar.edad = inicio['edad']
-             profesionales_a_modificar.save()
-             return redirect('Valorantinicio: Crear_Profesionales')
+#      if request.method == 'POST':
+#          form = ModificarProfesionalesForm(request.POST)
+#          if form.is_valid():
+#              info = form.cleaned_data
+#              profesionales_a_modificar.nombre = inicio['nombre']
+#              profesionales_a_modificar.edad = inicio['edad']
+#              profesionales_a_modificar.save()
+#              return redirect('Valorantinicio: Crear_Profesionales')
 
-         else:
-             return render(request, 'Valorantinicio/Modificar_Profesionales.html', {'form':form})
+#          else:
+#              return render(request, 'Valorantinicio/Modificar_Profesionales.html', {'form':form})
     
-     form = ModificarProfesionalesForm(initial={'nombre': profesionales_a_modificar.nombre,'edad': profesionales_a_modificar.edad})
-     return render(request, 'Valorantinicio/Modificar_Profesionales.html', {'form':form})
+#      form = ModificarProfesionalesForm(initial={'nombre': profesionales_a_modificar.nombre,'edad': profesionales_a_modificar.edad})
+#      return render(request, 'Valorantinicio/Modificar_Profesionales.html', {'form':form})
 
 # class CrearProfesionales(CreateView):
 #     model = Profesionales

@@ -6,6 +6,7 @@ class Profesionales(models.Model):
     nombre = models.CharField(max_length=30)
     edad = models.IntegerField()
     fecha_nacimiento = models.DateField(null=True)
+    descripcion = models.TextField(null=True)
 
     def _str_(self):
         return self.nombre
@@ -16,6 +17,7 @@ class jugadoresvalorant(models.Model):
     rol = models.CharField(choices=[('Duelista', 'Duelista'), ('Controlador', 'Controlador'), ('Iniciador', 'Iniciador'), ('Centinela', 'Centinela')], max_length=100)
     nacionalidad = models.CharField(max_length=100)
     edad = models.IntegerField()
+    descripcion = models.TextField(null=True)
 
     def _str_(self):
         return self.nombre
