@@ -6,11 +6,14 @@ from Valorantinicio.models import jugadoresvalorant
 from Valorantinicio.forms import BuscarJugadorForm
 from Valorantinicio.forms import ModificarProfesionalesForm
 from django.shortcuts import redirect
+from django.contrib.auth.decorators import login_required
+
 # importaciones de CBV
 # from django.views.generic.edit import CreateView, UpdateView, DeleteView
 # from django.views.generic.list import ListView
 # from django.views.generic.detail import DetailView
 # from django.urls import reverse_lazy
+# from django.contrib.auth.mixins import LoginRequiredMixin
 
 # Create your views here.
 
@@ -58,6 +61,7 @@ def Jugadores_valorant(request):
 
     return render(request, 'Valorantinicio/Jugadoresvalorant.html', {'form': form, 'segmensaje': segmensaje})
 
+@login_required
 def buscar_jugador_view(request):
     if request.method == 'POST':
        form = BuscarJugadorForm(request.POST)
@@ -101,29 +105,29 @@ def buscar_jugador_view(request):
 #      form = ModificarProfesionalesForm(initial={'nombre': profesionales_a_modificar.nombre,'edad': profesionales_a_modificar.edad})
 #      return render(request, 'Valorantinicio/Modificar_Profesionales.html', {'form':form})
 
-# class CrearProfesionales(CreateView):
+# class CrearProfesionales(CreateView, LoginRequiredMixin):
 #     model = Profesionales
 #     template_name = 'Valorantinicio/CBV/Crear_Profesionales_CBV.html'
 #     fields = ['nombre', 'edad', 'descripcion']
 #     success_url = reverse_lazy('Valorantinicio:Crear_Profesionales_CBV')
 
-# class ListarProfesionales(Listview):
+# class ListarProfesionales(Listview, LoginRequiredMixin):
 #     model = Profesionales
 #     template_name = 'Valorantinicio/CBV/Listar_Profesionales_CBV.html'
 #     context_object_name = 'Profesionales'
 
-# class ModificarProfesionales(UpdateView):
+# class ModificarProfesionales(UpdateView, LoginRequiredMixin):
 #     model = Profesionales
 #     template_name = 'Valorantinicio/CBV/Modificar_Profesionales_CBV.html'
 #     fields = ['nombre', 'edad', 'descripcion']
 #     succes_url = reverse_lazy('Valorantinicio:Listar_Profesionales')
 
-# class EliminarProfesionales(DeleteView):
+# class EliminarProfesionales(DeleteView, LoginRequiredMixin):
 #     model = Profesionales
 #     template_name = 'Valorantinicio/CBV/Eliminar_Profesionales_CBV.html'
 #     succes_url = reverse_lazy('Valorantinicio:Listar_Profesionales')
 
-# class MostrarProfesionales(DetailView):
+# class MostrarProfesionales(DetailView, LoginRequiredMixin):
 #     model = Profesionales
 #     template_name = "Valorantinicio/CBV/Mostrar_Profesionales_CBV.html"
 
