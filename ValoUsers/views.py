@@ -2,7 +2,7 @@ from django.shortcuts import render, redirect
 from django.contrib.auth.forms import AuthenticationForm
 from django.contrib.auth import authenticate, login as django_login
 from django.contrib.auth.forms import UserCreationForm
-from ValoUsers.forms import MiFormularioDeCreacionDeUsuarios
+from ValoUsers.forms import MiFormularioDeCreacionDeUsuarios, MiFormularioDeEdicionDeDatosDeUsuario
 
 # Create your views here.
 
@@ -69,3 +69,7 @@ def registro(request):
     else:
         userCreate = MiFormularioDeCreacionDeUsuarios()  # Instanciar el formulario vacío para mostrarlo en la página
     return render(request, 'ValoUsers/registro.html', {'form': userCreate})
+
+def edicion_perfil(request):
+   form = MiFormularioDeEdicionDeDatosDeUsuario()
+   return render(request, 'ValoUsers/edicion_perfil.html', {'form':form})
