@@ -2,6 +2,7 @@ from django.shortcuts import render, redirect
 from django.contrib.auth.forms import AuthenticationForm
 from django.contrib.auth import authenticate, login as django_login
 from django.contrib.auth.forms import UserCreationForm
+from ValoUsers.forms import MiFormularioDeCreacionDeUsuarios
 
 # Create your views here.
 
@@ -50,11 +51,21 @@ def login(request):
 #   form = UserCreationForm()
 #   return render(request, 'ValoUsers/registro.html', {'form':form})
 
+# def registro(request):
+#     if request.method == "POST":
+#         userCreate = UserCreationForm(request.POST)
+#         if userCreate is not None:
+#             userCreate.save()
+#             return redirect('login')
+#     else:
+#         return render(request, 'registro.html')
+
 def registro(request):
     if request.method == "POST":
-        userCreate = UserCreationForm(request.POST)
-        if userCreate is not None:
+        userCreate = MiFormularioDeCreacionDeUsuarios(request.POST)
+        if userCreate.is_valid():  # Verificar si el formulario es válido
             userCreate.save()
-            return redirect('login')
+            return redirect('ValoUsers:login')
     else:
-        return render(request, 'registro.html')
+        userCreate = MiFormularioDeCreacionDeUsuarios()  # Instanciar el formulario vacío para mostrarlo en la página
+    return render(request, 'ValoUsers/registro.html', {'form': userCreate})
