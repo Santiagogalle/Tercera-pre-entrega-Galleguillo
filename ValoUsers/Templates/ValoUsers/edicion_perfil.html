@@ -9,9 +9,12 @@ Editar perfil
 {% endblock h1_header %}
 
 {% block contenido %}
-<form action={% url 'Valorantinicio:Valorantinicio' %} method="POST">
+<form action={% url 'ValoUsers:editar_perfil' %} method="POST">
     {% csrf_token %}
-    {{form}}
+    <table>
+        {{form}}
+    </table>
     <button>Guardar cambios</button>
+    <button type='button'><a class="navbar-brand" href={% url 'ValoUsers:modificar_pass' %}>Cambiar contrasenia</button>
 </form>
 {% endblock contenido %}

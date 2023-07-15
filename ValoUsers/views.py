@@ -1,8 +1,12 @@
 from django.shortcuts import render, redirect
 from django.contrib.auth.forms import AuthenticationForm
+from django.contrib.auth.views import PasswordChangeView
 from django.contrib.auth import authenticate, login as django_login
 from django.contrib.auth.forms import UserCreationForm
+from django.contrib.auth.decorators import login_required
+from django.contrib.auth.mixins import LoginRequiredMixin
 from ValoUsers.forms import MiFormularioDeCreacionDeUsuarios, MiFormularioDeEdicionDeDatosDeUsuario
+from django.urls import reverse_lazy
 
 # Create your views here.
 
@@ -70,6 +74,21 @@ def registro(request):
         userCreate = MiFormularioDeCreacionDeUsuarios()  # Instanciar el formulario vacío para mostrarlo en la página
     return render(request, 'ValoUsers/registro.html', {'form': userCreate})
 
+@login_required
 def edicion_perfil(request):
-   form = MiFormularioDeEdicionDeDatosDeUsuario()
-   return render(request, 'ValoUsers/edicion_perfil.html', {'form':form})
+
+  if request.method == 'POST':
+     form = MiFormularioDeEdicionDeDatosDeUsuario(request.POST, instance=request.user)
+     if form.is_valid():
+        form.save()
+        return redirect('Valorantinicio:Valorantinicio')
+     else:
+        return render(request, 'ValoUsers/edicion_perfil.html', {'form':form})
+  else:
+    form = MiFormularioDeEdicionDeDatosDeUsuario(instance=request.user)
+  
+  return render(request, 'ValoUsers/edicion_perfil.html', {'form':form})
+
+class ModificarPass(LoginRequiredMixin, PasswordChangeView):
+   template_name = 'ValoUsers/modificar_pass.html'
+   success_url = reverse_lazy('ValoUsers:editar_perfil')
