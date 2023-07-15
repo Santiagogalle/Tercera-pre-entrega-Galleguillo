@@ -126,3 +126,4 @@ def buscar_jugador_view(request):
 # class MostrarProfesionales(DetailView):
 #     model = Profesionales
 #     template_name = "Valorantinicio/CBV/Mostrar_Profesionales_CBV.html"
+

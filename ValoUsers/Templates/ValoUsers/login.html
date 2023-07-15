@@ -1,0 +1,18 @@
+{% extends 'base.html' %}
+
+{% block title_head %}
+<title>Login</title>
+{% endblock title_head %}
+
+{% block h1_header %}
+Login
+{% endblock h1_header %}
+
+{% block contenido %}
+<form action="{% url 'ValoUsers:login' %}" method="POST">
+    {% csrf_token %}
+    <input name = 'user' type= 'text'>
+    <input name = 'password' type= 'text'>
+    <button type="submit">Login</button>
+</form>
+{% endblock contenido %}
