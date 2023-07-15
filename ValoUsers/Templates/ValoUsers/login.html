@@ -1,0 +1,22 @@
+{% extends 'base.html' %}
+
+{% block title_head %}
+<title>Login</title>
+{% endblock title_head %}
+
+{% block h1_header %}
+Login
+{% endblock h1_header %}
+
+{% block contenido %}
+
+<p>{{mensaje}}</p>
+
+<form action="{% url 'ValoUsers:login' %}" method="POST">
+    {% csrf_token %}
+    <table>
+        {{form}}
+    </table>
+    <button>Login</button>
+</form>
+{% endblock contenido %}
