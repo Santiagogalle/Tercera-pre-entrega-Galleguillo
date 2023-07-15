@@ -50,11 +50,21 @@ def login(request):
 #   form = UserCreationForm()
 #   return render(request, 'ValoUsers/registro.html', {'form':form})
 
+# def registro(request):
+#     if request.method == "POST":
+#         userCreate = UserCreationForm(request.POST)
+#         if userCreate is not None:
+#             userCreate.save()
+#             return redirect('login')
+#     else:
+#         return render(request, 'registro.html')
+
 def registro(request):
     if request.method == "POST":
         userCreate = UserCreationForm(request.POST)
-        if userCreate is not None:
+        if userCreate.is_valid():  # Verificar si el formulario es válido
             userCreate.save()
-            return redirect('login')
+            return redirect('ValoUsers:login')
     else:
-        return render(request, 'registro.html')
+        userCreate = UserCreationForm()  # Instanciar el formulario vacío para mostrarlo en la página
+    return render(request, 'ValoUsers/registro.html', {'form': userCreate})
