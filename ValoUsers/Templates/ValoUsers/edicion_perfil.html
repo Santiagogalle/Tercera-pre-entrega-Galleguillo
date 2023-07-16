@@ -9,7 +9,7 @@ Editar perfil
 {% endblock h1_header %}
 
 {% block contenido %}
-<form action={% url 'ValoUsers:editar_perfil' %} method="POST">
+<form action={% url 'ValoUsers:editar_perfil' %} method="POST" enctype='multipart/form-data'>
     {% csrf_token %}
     <table>
         {{form}}
