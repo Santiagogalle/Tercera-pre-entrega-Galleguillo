@@ -82,7 +82,7 @@ def registro(request):
 def edicion_perfil(request):
   info_extra_user = request.user.infoextra
   if request.method == 'POST':
-    form = MiFormularioDeEdicionDeDatosDeUsuario(request.POST, instance=request.user)
+    form = MiFormularioDeEdicionDeDatosDeUsuario(request.POST, request.FILES, instance=request.user)
     if form.is_valid():
 
       avatar = form.cleaned_data.get('avatar')

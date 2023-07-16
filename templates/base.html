@@ -26,6 +26,9 @@
                 <a class="navbar-brand" href={% url 'Valorantinicio:Crear_Profesionales' %}>Crear_Profesionales</a>
                 <a class="navbar-brand" href={% url 'Valorantinicio:Jugadoresvalorant' %}>Jugadoresvalorant</a>
                 {% if request.user.is_authenticated %}
+                {% if request.user.infoextra.avatar %}
+                <img src={{request.user.infoextra.avatar.url}} alt="" heigth'30px'>
+                {% endif %}
                 <a class="btn btn-secondary" href={% url 'ValoUsers:logout' %}>Logout</a>
                 <a class="navbar-brand" href={% url 'ValoUsers:editar_perfil' %}>{{request.user.username}}</a>
                 {% else %}
