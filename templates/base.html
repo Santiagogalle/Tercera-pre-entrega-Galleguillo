@@ -25,6 +25,7 @@
                 <a class="navbar-brand" href={% url 'Valorantinicio:Valorantinicio' %}>Valorantinicio</a>
                 <a class="navbar-brand" href={% url 'Valorantinicio:Crear_Profesionales' %}>Crear_Profesionales</a>
                 <a class="navbar-brand" href={% url 'Valorantinicio:Jugadoresvalorant' %}>Jugadoresvalorant</a>
+                <a class="navbar-brand" href={% url 'Valorantinicio:aboutme' %}>Acerca_de_mi</a>
                 {% if request.user.is_authenticated %}
                 {% if request.user.infoextra.avatar %}
                 <img src={{request.user.infoextra.avatar.url}} alt="" heigth='40px'>

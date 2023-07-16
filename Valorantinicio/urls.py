@@ -9,7 +9,7 @@ urlpatterns = [
     # path('Profesionales/Eliminar/<int:Profesionales_id>/', views.Eliminar_Profesionales, name='Eliminar_Profesionales'),
     path('Jugadores/valorant/', views.Jugadores_valorant, name='Jugadoresvalorant'),
     # path('Profesionales/Modificar/<int:Profesionales_id>/', views.Modificar_Profesionales, name='Modificar_Profesionales'),
-    path('about/', views.about_me, name='aboutme'),
+    path('about/', views.about_view, name='aboutme'),
 
     # #CBV
     # # path('Profesionales/Crear/', views.CreateView.as_view(), name='Crear_Profesionales'),
