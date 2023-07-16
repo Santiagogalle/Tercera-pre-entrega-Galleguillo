@@ -131,3 +131,6 @@ def buscar_jugador_view(request):
 #     model = Profesionales
 #     template_name = "Valorantinicio/CBV/Mostrar_Profesionales_CBV.html"
 
+def about_view(request):
+    return render(request, 'about.html')
+
