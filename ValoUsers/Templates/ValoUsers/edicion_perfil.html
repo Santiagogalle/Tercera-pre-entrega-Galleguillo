@@ -1,0 +1,20 @@
+{% extends 'base.html' %}
+
+{% block title_head %}
+<title>Edicion perfil</title>
+{% endblock title_head %}
+
+{% block h1_header %}
+Editar perfil
+{% endblock h1_header %}
+
+{% block contenido %}
+<form action={% url 'ValoUsers:editar_perfil' %} method="POST" enctype='multipart/form-data'>
+    {% csrf_token %}
+    <table>
+        {{form}}
+    </table>
+    <button>Guardar cambios</button>
+    <button type='button'><a class="navbar-brand" href={% url 'ValoUsers:modificar_pass' %}>Cambiar contrasenia</button>
+</form>
+{% endblock contenido %}
