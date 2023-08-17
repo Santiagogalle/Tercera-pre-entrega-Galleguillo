@@ -1,0 +1,13 @@
+{% extends 'base.html' %}
+
+{% block title_head %}
+<title>Informacion del usuario</title>
+{% endblock title_head %}
+
+{% block h1_header %}
+Informacion del usuario
+{% endblock h1_header %}
+
+{% block contenido %}
+<p>Nombre: {{request.user.first_name}}, Apellido: {{request.user.last_name}}, Email: {{request.user.email}}, Avatar: {{request.user.avatar}} </p>
+{% endblock contenido %}

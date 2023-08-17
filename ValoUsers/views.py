@@ -133,3 +133,7 @@ def edicion_perfil(request):
 class ModificarPass(LoginRequiredMixin, PasswordChangeView):
    template_name = 'ValoUsers/modificar_pass.html'
    success_url = reverse_lazy('ValoUsers:editar_perfil')
+
+@login_required
+def user_view(request):
+    return render(request, 'ValoUsers/user_info.html')
