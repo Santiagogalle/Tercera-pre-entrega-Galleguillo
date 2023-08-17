@@ -11,8 +11,8 @@ Login
 {% block contenido %}
 <form action="{% url 'ValoUsers:login' %}" method="POST">
     {% csrf_token %}
-    <input name = 'user' type= 'text'>
-    <input name = 'password' type= 'text'>
+    {{form}}
+    
     <button type="submit">Login</button>
 </form>
 {% endblock contenido %}

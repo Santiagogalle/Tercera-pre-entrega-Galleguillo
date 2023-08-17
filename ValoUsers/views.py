@@ -1,7 +1,8 @@
 from django.shortcuts import render, redirect
+from django.contrib.auth import authenticate, login as django_login
+# from .forms import LoginForm
 from django.contrib.auth.forms import AuthenticationForm
 from django.contrib.auth.views import PasswordChangeView
-from django.contrib.auth import authenticate, login as django_login
 from django.contrib.auth.forms import UserCreationForm
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth.mixins import LoginRequiredMixin
@@ -30,20 +31,52 @@ from ValoUsers.models import InfoExtra
 #    form = AuthenticationForm()
 #    return render(request, 'ValoUsers/login.html', {'form': form})
 
-def login(request):
-  if request.method == "POST":
-    user = authenticate(username=request.POST['user'], password=request.POST['password'])
-    if user is not None:
-      django_login(request, user)
+# def login(request):
+#    if request.method == "POST":
+#      user = authenticate(username=request.POST['user'], password=request.POST['password'])
+#      if user is not None:
+#        django_login(request, user)
 
-      InfoExtra.objects.get_or_create(user=user)
+#        InfoExtra.objects.get_or_create(user=user)
       
-      return redirect("Valorantinicio:Valorantinicio")
+#        return redirect("Valorantinicio:Valorantinicio")
+#      else:
+#        return render(request, 'login.html', {'error': 'Usuario o contraseña incorrectos'})
+#    else:
+#      form = AuthenticationForm()
+#      return render(request, 'ValoUsers/login.html', {'form':form})
+   
+def login(request):
+    if request.method == "POST":
+        form = AuthenticationForm(data=request.POST)
+        if form.is_valid():
+            user = form.get_user()
+            django_login(request, user)
+
+            InfoExtra.objects.get_or_create(user=user)
+
+            return redirect("Valorantinicio:Valorantinicio")
+        else:
+            return render(request, 'login.html', {'form': form, 'error': 'Usuario o contraseña incorrectos'})
     else:
-      return render(request, 'login.html', {'error': 'Usuario o contraseña incorrectos'})
-  else:
-    form = AuthenticationForm()
-    return render(request, 'ValoUsers/login.html', {'form':form})
+        form = AuthenticationForm()
+        return render(request, 'ValoUsers/login.html', {'form': form})
+
+# def login_view(request):
+#     if request.method == "POST":
+#         form = AuthenticationForm(data=request.POST)
+#         if form.is_valid():
+#             user = form.get_user()
+#             login(request, user)
+
+#             InfoExtra.objects.get_or_create(user=user)
+
+#             return redirect("Valorantinicio:Valorantinicio")
+#         else:
+#             return render(request, 'login.html', {'form': form, 'error': 'Usuario o contraseña incorrectos'})
+#     else:
+#         form = AuthenticationForm()
+#         return render(request, 'login.html', {'form': form})
   
 
 # def registro(request):

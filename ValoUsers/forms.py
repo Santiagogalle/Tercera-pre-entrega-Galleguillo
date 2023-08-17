@@ -29,3 +29,7 @@ class MiFormularioDeEdicionDeDatosDeUsuario(UserChangeForm):
     class Meta:
         model = User
         fields = ['email', 'first_name', 'last_name', 'avatar']
+
+# class LoginForm(forms.Form):
+#     username = forms.CharField(label='Nombre de Usuario')
+#     password = forms.CharField(widget=forms.PasswordInput, label='Contraseña')
