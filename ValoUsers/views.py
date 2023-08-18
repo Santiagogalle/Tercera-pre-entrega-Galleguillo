@@ -137,3 +137,7 @@ class ModificarPass(LoginRequiredMixin, PasswordChangeView):
 @login_required
 def user_view(request):
     return render(request, 'ValoUsers/user_info.html')
+
+@login_required
+def extra_view(request):
+    return render(request, 'ValoUsers/info_extra.html')

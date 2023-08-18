@@ -33,6 +33,7 @@
                 <a class="btn btn-secondary" href={% url 'ValoUsers:logout' %}>Logout</a>
                 <a class="navbar-brand" href={% url 'ValoUsers:editar_perfil' %}>{{request.user.username}}</a>
                 <a class="navbar-brand" href={% url 'ValoUsers:user_info' %}>InfoUser</a>
+                <a class="navbar-brand" href={% url 'ValoUsers:info_extra' %}>ExtraInfoUser</a>
                 {% else %}
                 <a class="btn btn-primary" href={% url 'ValoUsers:login' %}>Login</a>
                 <a class="btn btn-primary" href={% url 'ValoUsers:registro' %}>Registro</a>
