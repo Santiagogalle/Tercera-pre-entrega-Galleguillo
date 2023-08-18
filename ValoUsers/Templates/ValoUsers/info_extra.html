@@ -9,5 +9,6 @@ Informacion extra del usuario
 {% endblock h1_header %}
 
 {% block contenido %}
-<p>Edad: 18 años, Estado Civil: soltero, Reside en: CABA. </p>
+<p>Edad: {{ info_extra.edad }}, Estado Civil: {{ info_extra.estado_civil }}, Reside en: {{ info_extra.residencia }}.</p>
+<img src="{{ info_extra.avatar.url }}" alt="Avatar" width="100">
 {% endblock contenido %}

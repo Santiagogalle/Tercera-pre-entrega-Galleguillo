@@ -140,4 +140,11 @@ def user_view(request):
 
 @login_required
 def extra_view(request):
-    return render(request, 'ValoUsers/info_extra.html')
+    try:
+        # Obtener la instancia de InfoExtra asociada al usuario autenticado
+        info_extra = InfoExtra.objects.get(user=request.user)
+    except InfoExtra.DoesNotExist:
+        # Si no hay instancia de InfoExtra para el usuario, crear una nueva
+        info_extra = InfoExtra.objects.create(user=request.user)
+    
+    return render(request, 'ValoUsers/info_extra.html', {'info_extra': info_extra})
